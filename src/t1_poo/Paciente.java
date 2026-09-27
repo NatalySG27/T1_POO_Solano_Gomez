@@ -132,7 +132,11 @@ public class Paciente {
     }
 
     public void setEdad(int edad) {
+        if(edad >0 && edad <=100){
         this.edad = edad;
+        }else{
+        System.out.println("Error edad incorrecta");
+        }
     }
 
     public String getCategoria() {
