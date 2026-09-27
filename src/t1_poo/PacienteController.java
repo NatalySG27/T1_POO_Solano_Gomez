@@ -18,9 +18,21 @@ public class PacienteController {
     }
     
     public void listarPacientes(){
-        System.out.println("La lista de pacientes es:");
-        for(Paciente paciente : lista_pacientes){
-        paciente.verPaciente();
+        System.out.println("La lista de pacientes es: ");
+        for(int i = 0; i < lista_pacientes.size(); i++){
+            Paciente aux = lista_pacientes.get(i);
+            aux.verPaciente();
         }
+    }
+    
+    public void buscarPersona(String nrobuscado){
+        for(int i = 0; i < lista_pacientes.size(); i++){
+            if(nrobuscado.equals(lista_pacientes.get(i).getNro_documento())){
+                System.out.println("Paciente encontrado y es: ");
+                lista_pacientes.get(i).verPaciente();
+                return;
+            }
+        }
+        System.out.println("Paciente no encontrado");
     }
 }
