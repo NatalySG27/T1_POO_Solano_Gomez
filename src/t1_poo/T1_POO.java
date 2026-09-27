@@ -22,13 +22,16 @@ public class T1_POO {
         Scanner sc = new Scanner(System.in);
         PacienteController controla = new PacienteController();
         String rpta="si";
-        System.out.println("   SISTEMA DE REGISTRO DE PACIENTES   ");
+        System.out.println("SISTEMA DE REGISTRO DE PACIENTES");
         
         while(rpta.equalsIgnoreCase("si")) {
             registrarPersona(sc, controla);
             System.out.println("¿Desea ingresar otro paciente? (si/no):");
             rpta = sc.nextLine();
         }
+        
+        mostrarListado(controla);
+        realizarBusqueda(sc, controla);
         sc.close();
     }
     
@@ -54,6 +57,22 @@ public class T1_POO {
         System.out.println("Ingrese apellido materno: ");
         p1.setAp_materno(sc.nextLine());
         
+        while(p1.getCelular()== null){
+            System.out.println("Ingrese nro de celular: ");
+            p1.setCelular(sc.nextLine());
+        }
+        
+        boolean correoValido = false;
+        while(!correoValido){
+            try {
+                System.out.println("Ingrese correo electronico (Formato abcd@gmail.com): ");
+                p1.setCorreo(sc.nextLine());
+                correoValido = true;
+            } catch(Exception e){
+                System.out.println("ERROR: Formato de correo electronico no valido. Use el formato abcd@gmail.com");
+            }
+        }
+        
         boolean fechaValida = false;
         while(!fechaValida){
             try {
@@ -61,9 +80,33 @@ public class T1_POO {
                 p1.setFecha_nacimiento(LocalDate.parse(sc.nextLine()));
                 fechaValida = true;
             } catch(DateTimeParseException e){
-                System.out.println("ERROR: Formato de fecha no valido. Use el formato AAAA-MM-DD.");
+                System.out.println("ERROR: Formato de fecha no valido. Use el formato AAAA-MM-DD");
             }
         }
+        
+        System.out.println("Ingrese sus alergias: Si es mas de 1 separar por comas (,)");
+        p1.setAlergias(sc.nextLine());
+        
+        while(p1.getEdad() == 0){
+            System.out.println("Ingrese la edad");
+            p1.setEdad(sc.nextInt());
+        }
+        
         controla.agregarPaciente(p1);
+    }
+    
+    public static void mostrarListado(PacienteController controla) {
+        System.out.println("\n----------------------------------------");
+        controla.listarPacientes();
+    }
+    
+    public static void realizarBusqueda(Scanner sc, PacienteController controla) {
+        System.out.println("\n----------------------------------------");
+        try {
+            System.out.println("Ingrese el numero de documento que desea buscar: ");
+            controla.buscarPaciente(sc.nextLine());
+        } catch(Exception e){
+            System.out.println("ERROR: Ocurrio un problema en la busqueda.");
+        }
     }
 }

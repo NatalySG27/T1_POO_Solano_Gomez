@@ -24,7 +24,7 @@ public class PacienteController {
             aux.verPaciente();
         }
     }
-    
+
     public void buscarPaciente(String nrobuscado){
         for(int i = 0; i < lista_pacientes.size(); i++){
             if(nrobuscado.equals(lista_pacientes.get(i).getNro_documento())){

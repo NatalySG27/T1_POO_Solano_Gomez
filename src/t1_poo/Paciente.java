@@ -100,7 +100,11 @@ public class Paciente {
     }
 
     public void setTipo_sangre(String tipo_sangre) {
-        this.tipo_sangre = tipo_sangre;
+        if(tipo_sangre.equalsIgnoreCase("A+") || tipo_sangre.equalsIgnoreCase("B+") || tipo_sangre.equalsIgnoreCase("AB+") || tipo_sangre.equalsIgnoreCase("B+") || tipo_sangre.equalsIgnoreCase("O+") || tipo_sangre.equalsIgnoreCase("O-")){
+            this.tipo_sangre = tipo_sangre;
+        }else{
+            System.out.println("Tipo de sangre no valido");
+        }
     }
 
     public String getAlergias() {
@@ -108,7 +112,6 @@ public class Paciente {
     }
 
     public void setAlergias(String alergias) {
-        this.alergias = alergias;
     }
 
     public String getCelular() {
@@ -116,7 +119,11 @@ public class Paciente {
     }
 
     public void setCelular(String celular) {
-        this.celular = celular;
+        if(celular.length() == 9){
+            this.celular = celular;
+        }else{
+            System.out.println("El nro de telefono debe tener 9 digitos!!!");
+        }
     }
 
     public String getCorreo() {
