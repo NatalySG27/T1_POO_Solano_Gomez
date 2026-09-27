@@ -4,6 +4,8 @@
  */
 package t1_poo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -20,29 +22,48 @@ public class T1_POO {
         Scanner sc = new Scanner(System.in);
         PacienteController controla = new PacienteController();
         String rpta="si";
-        while(rpta.equals("si"))
-        {
-        Paciente p = new Paciente();
-        while(p.getTipo_documento() == null)
-        {
-        System.out.println("Ingrese el tipo de documento");
-        p.setTipo_documento(sc.nextLine());
+        System.out.println("   SISTEMA DE REGISTRO DE PACIENTES   ");
+        
+        while(rpta.equalsIgnoreCase("si")) {
+            registrarPersona(sc, controla);
+            System.out.println("¿Desea ingresar otro paciente? (si/no):");
+            rpta = sc.nextLine();
         }
-        while(p.getNro_documento() == null)
-        {
-        System.out.println("Ingrese el número de documento");
-        p.setNro_documento(sc.nextLine());
+        sc.close();
+    }
+    
+    public static void registrarPersona(Scanner sc, PacienteController controla) {
+        Paciente p1 = new Paciente();
+        
+        while(p1.getTipo_documento() == null){
+            System.out.println("Ingrese tipo de documento (DNI / Carnet de Extranjeria): ");
+            p1.setTipo_documento(sc.nextLine());
         }
-        System.out.println("Ingrese el Apellido Paterno");
-        p.setAp_paterno(sc.nextLine());
-        System.out.println("Ingrese el Apellido Materno");
-        p.setAp_materno(sc.nextLine());
-        System.out.println("Ingrese el Nombre");
-        p.setNombre(sc.nextLine());
-        System.out.println("Ingrese el número de celular");
-        p.setCelular(sc.nextLine());
-        System.out.println("Ingrese el correo electrónico");
-        p.setCorreo(sc.nextLine());
+        
+        while(p1.getNro_documento() == null){
+            System.out.println("Ingrese nro de documento: ");
+            p1.setNro_documento(sc.nextLine());
         }
+        
+        System.out.println("Ingrese nombre: ");
+        p1.setNombre(sc.nextLine());
+        
+        System.out.println("Ingrese apellido paterno: ");
+        p1.setAp_paterno(sc.nextLine());
+        
+        System.out.println("Ingrese apellido materno: ");
+        p1.setAp_materno(sc.nextLine());
+        
+        boolean fechaValida = false;
+        while(!fechaValida){
+            try {
+                System.out.println("Ingrese fecha de nacimiento (Formato AAAA-MM-DD): ");
+                p1.setFecha_nacimiento(LocalDate.parse(sc.nextLine()));
+                fechaValida = true;
+            } catch(DateTimeParseException e){
+                System.out.println("ERROR: Formato de fecha no valido. Use el formato AAAA-MM-DD.");
+            }
+        }
+        controla.agregarPaciente(p1);
     }
 }
