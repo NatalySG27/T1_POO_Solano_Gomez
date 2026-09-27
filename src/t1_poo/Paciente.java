@@ -4,6 +4,8 @@
  */
 package t1_poo;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author UCF20412
@@ -14,11 +16,22 @@ public class Paciente {
     String ap_materno;
     String tipo_documento;
     String nro_documento;
-    String fecha_nacimiento;
+    LocalDate fecha_nacimiento;
     String tipo_sangre;
     String alergias;
     String celular;
     String correo;
+    int edad;
+    String categoria;
     
-    
+    public void verDatos() {
+        System.out.println("Paciente TipoDoc: " + this.tipo_documento
+                + " NroDoc: " + this.nro_documento
+                + " Nombre: " + this.nombre
+                + " Apellido paterno: " + this.ap_paterno
+                + " Apellido materno: " + this.ap_materno
+                + " Fecha de nacimiento: " + this.fecha_nacimiento
+                + " CEL: " + this.celular
+                + " EMAIL: " + this.correo);
+    }
 }
