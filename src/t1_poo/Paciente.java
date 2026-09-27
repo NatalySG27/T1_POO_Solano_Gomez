@@ -159,7 +159,7 @@ public class Paciente {
         }
     }
     
-    public void verDatos() {
+    public void verPaciente() {
         System.out.println("Paciente TipoDoc: " + this.tipo_documento
                 + " NroDoc: " + this.nro_documento
                 + " Nombre: " + this.nombre
