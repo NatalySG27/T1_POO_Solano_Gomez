@@ -11,18 +11,18 @@ import java.time.LocalDate;
  * @author UCF20412
  */
 public class Paciente {
-    String nombre;
-    String ap_paterno;
-    String ap_materno;
-    String tipo_documento;
-    String nro_documento;
-    LocalDate fecha_nacimiento;
-    String tipo_sangre;
-    String alergias;
-    String celular;
-    String correo;
-    int edad;
-    String categoria;
+    private String nombre;
+    private String ap_paterno;
+    private String ap_materno;
+    private String tipo_documento;
+    private String nro_documento;
+    private LocalDate fecha_nacimiento;
+    private String tipo_sangre;
+    private String alergias;
+    private String celular;
+    private String correo;
+    private int edad;
+    private String categoria;
     
     public void verDatos() {
         System.out.println("Paciente TipoDoc: " + this.tipo_documento
@@ -32,6 +32,8 @@ public class Paciente {
                 + " Apellido materno: " + this.ap_materno
                 + " Fecha de nacimiento: " + this.fecha_nacimiento
                 + " CEL: " + this.celular
-                + " EMAIL: " + this.correo);
+                + " EMAIL: " + this.correo
+                + " Edad: " + this.edad
+                + " Categoria: " + this.categoria);
     }
 }
