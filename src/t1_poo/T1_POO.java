@@ -91,7 +91,7 @@ public class T1_POO {
             System.out.println("Ingrese la edad");
             p1.setEdad(sc.nextInt());
         }
-        
+        sc.nextLine(); 
         controla.agregarPaciente(p1);
     }
     
